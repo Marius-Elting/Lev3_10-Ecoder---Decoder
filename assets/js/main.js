@@ -54,10 +54,7 @@ function encode() {
     encoder.forEach(function (val) {
         for (let inputs of inputUper) {
             if (val.letter == inputs) {
-                console.log(val.letter);
-                console.log(val.encode);
                 outputP = val.encode + schlüssel;
-                console.log(outputP);
                 if (outputP <= 37) {
                     outputALPHA = alpha.slice(outputP - 1, outputP);
                     outputA.push(outputALPHA);
