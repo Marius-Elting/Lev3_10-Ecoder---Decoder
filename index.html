@@ -10,11 +10,34 @@
 </head>
 
 <body>
-    <label for="">Schlüssel:<input id="schlüssel" placeholder="Schlüssel" value="3" type="number"></label>
-    <input placeholder="Text" type="text" id="input">
-    <button type="button" onclick="encode()">encode</button>
-    <button type="button" onclick="decode()">decode</button>
-    <p id="output"></p>
+    <section>
+        <article>
+            <h1>Encode</h1>
+            <label for="">Schlüssel:<input id="encoSchlüssel" placeholder="Schlüssel" value="3" type="number"></label>
+            <label for="">Text:<input placeholder="Text" type="text" id="encoInput"></label>
+            <div>
+                <button id="encoCopyButton">Copy</button>
+                <button id="encoPasteButton">Paste</button>
+            </div>
+            <button type="button" onclick="encode()">Encode</button>
+
+            <p id="encoOutput"></p>
+
+        </article>
+        <article>
+            <h1>Decode</h1>
+            <label for="">Schlüssel:<input id="decoSchlüssel" placeholder="Schlüssel" value="3" type="number"></label>
+            <label for="">Text:<input placeholder="Text" type="text" id="decoInput"></label>
+            <div>
+                <button id="decoCopyButton">Copy</button>
+                <button id="decoPasteButton">Paste</button>
+            </div>
+            <button type="button" onclick="decode()">Decode</button>
+
+            <p id="decoOutput"></p>
+
+        </article>
+    </section>
     <script src="./assets/js/main.js"></script>
 </body>
 

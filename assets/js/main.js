@@ -41,30 +41,28 @@ let encoder = [
 let outputALPHA = [];
 let alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ";
 let outputP = "";
-let output = document.getElementById("output");
+let encoOutput = document.getElementById("encoOutput");
+let decoOutput = document.getElementById("decoOutput");
 
 function encode() {
-    let schlüssel = Number(document.getElementById("schlüssel").value);
-    let input = document.getElementById("input").value;
-    let inputUper = input.toUpperCase();
+    let encoSchlüssel = Number(document.getElementById("encoSchlüssel").value);
+    let encoInput = document.getElementById("encoInput").value;
+    let inputUper = encoInput.toUpperCase();
     let outputJ = "";
     let outputA = [];
-    output.innerHTML = "";
+    encoOutput.innerHTML = "";
 
     for (let i = 0; i < inputUper.length; i++) {
         encoder.forEach(function (val) {
             if (inputUper[i] == val.letter) {
-                outputP = val.encode + schlüssel;
-                console.log(val.encode);
+                outputP = val.encode + encoSchlüssel;
                 if (outputP <= 37) {
                     outputALPHA = alpha.slice(outputP - 1, outputP);
-                    console.log(outputALPHA);
                     outputA.push(outputALPHA);
                 } else {
                     outputP = outputP - 37;
                     outputALPHA = alpha.slice(outputP - 1, outputP);
                     outputA.push(outputALPHA);
-                    console.log(outputA);
 
                 }
             }
@@ -73,34 +71,30 @@ function encode() {
 
     outputJ = outputA.join("");
     outputJ.toString();
-    output.innerHTML += outputJ;
-    console.log(alpha);
+    encoOutput.innerHTML += outputJ;
 
 }
 
 alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ";
 function decode() {
-    let schlüssel = Number(document.getElementById("schlüssel").value);
-    let input = document.getElementById("input").value;
-    let inputUper = input.toUpperCase();
+    let decoSchlüssel = Number(document.getElementById("decoSchlüssel").value);
+    let decoInput = document.getElementById("decoInput").value;
+    let inputUper = decoInput.toUpperCase();
     let outputJ = "";
     let outputA = [];
-    output.innerHTML = "";
+    decoOutput.innerHTML = "";
 
     for (let inputs of inputUper) {
         encoder.forEach(function (val) {
-            console.log(inputs);
             if (val.letter == inputs) {
-                outputP = val.encode - schlüssel;
+                outputP = val.encode - decoSchlüssel;
                 if (outputP <= 37) {
                     outputALPHA = alpha.slice(outputP - 1, outputP);
                     outputA.push(outputALPHA);
-                    console.log(outputA);
                 } else {
                     outputP = outputP - 37;
                     outputALPHA = alpha.slice(outputP - 1, outputP);
                     outputA.push(outputALPHA);
-                    console.log(outputA);
 
                 }
             }
@@ -108,6 +102,33 @@ function decode() {
     };
     outputJ = outputA.join("");
     outputJ.toString();
-    output.innerHTML += outputJ;
-    console.log(alpha);
+    decoOutput.innerHTML += outputJ;
 }
+
+let decoCopyButton = document.getElementById("decoCopyButton");
+decoCopyButton.addEventListener("click", (event) => {
+    let copyText = decoOutput.textContent;
+    navigator.clipboard.writeText(copyText);
+});
+
+let decoPasteButton = document.getElementById("decoPasteButton");
+
+decoPasteButton.addEventListener("click", async (event) => {
+    let read = await navigator.clipboard.readText();
+    decoInput.value = read;
+});
+
+
+
+let encoCopyButton = document.getElementById("encoCopyButton");
+encoCopyButton.addEventListener("click", (event) => {
+    let copyText = encoOutput.textContent;
+    navigator.clipboard.writeText(copyText);
+
+});
+
+let encoPasteButton = document.getElementById("encoPasteButton");
+encoPasteButton.addEventListener("click", async (event) => {
+    let read = await navigator.clipboard.readText();
+    encoInput.value = read;
+});
